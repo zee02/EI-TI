@@ -1,0 +1,11 @@
+form{
+    width: 350px;
+    padding: 15px;
+    margin : 0 auto;
+}
+button{
+    margin-top: 10px;
+}
+label{
+    margin-top: 5px;
+}
