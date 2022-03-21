@@ -12,7 +12,7 @@ $password = "123123";
 if (isset($_POST['username']) && isset($_POST['password'])) {
     if ($_POST['username'] == $username && $_POST['password'] == $password) {
         echo "Login com sucesso..." . "<br>";
-        $_SESSION["teste"]=$_POST['teste'];
+        $_SESSION["username"]=$_POST['username'];
         header('Location: dashboard.php');
     } else {
         echo "Login invalido..." . "<br>";
@@ -35,7 +35,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 <body>
     <div class="container">
         <form method="post">
-            <a href="index.php"><img src="estg.png"></a>
+            <a href="index.php"><img src="lab03_icon/estg.png"></a>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>
                 <input type="text" required placeholder="Escreva o username" class="form-control" name="username" id="username">
