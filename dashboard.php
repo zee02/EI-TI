@@ -1,10 +1,18 @@
-<?php 
+<?php
 session_start();
-if(!isset($_SESSION['username'])){
+if (!isset($_SESSION['username'])) {
     header("refresh:5;url=index.php");
     die("Acesso restrito.");
 }
+
+$valor_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/valor.txt");
+$hora_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/hora.txt");
+$log_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/log.txt");
+$nome_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/nome.txt");
+
+echo ($nome_temperatura . ": " . $valor_temperatura . "ºC em " . $hora_temperatura);
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -12,23 +20,26 @@ if(!isset($_SESSION['username'])){
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Plataforma IoT</title>
+    <meta http-equiv="refresh" content="5">
 </head>
 
 <style>
-.img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.float-container {
-    border: 3px solid #fff;
-    padding: 10px;
-}
-.float-child {
-    width: 50%;
-    float: left;
-    padding: 1px;
-}
+    .img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .float-container {
+        border: 3px solid #fff;
+        padding: 10px;
+    }
+
+    .float-child {
+        width: 50%;
+        float: left;
+        padding: 1px;
+    }
 </style>
 
 <body>
@@ -38,20 +49,20 @@ if(!isset($_SESSION['username'])){
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Dashboard EI-TI</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Histórico</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Logout</a>
-                </li>
-            </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Histórico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav><br>
@@ -73,40 +84,40 @@ if(!isset($_SESSION['username'])){
     </div><br>
 
     <!--3 PAINEIS DE CONTROLO-->
-   <div class="container">
-       <div class="row">
-           <div class="col-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
                 <div class="card">
                     <div class="card-header" style="text-align: center;"><b>Luminosidade: 80%</b></div>
                     <div class="card-body">
                         <img src="lab02_icons/dia.png" alt="humidade" class="img">
                     </div>
-                    <div class="card-footer" style="text-align: center;">Atualização: 2022/03/01 14:31 - <a href=”#” >Histórico</a></div>
+                    <div class="card-footer" style="text-align: center;">Atualização: 2022/03/01 14:31 - <a href=”#”>Histórico</a></div>
                 </div>
-           </div>
-           <div class="col-sm">
+            </div>
+            <div class="col-sm">
                 <div class="card">
-                    <div class="card-header" style="text-align: center;"><b>Temperatura: 22%</b></div>
+                    <div class="card-header" style="text-align: center;"><b> <?php echo $nome_temperatura.": ". $valor_temperatura."º" ?></b></div>
                     <div class="card-body">
                         <img src="lab02_icons/temperature.png" alt="humidade" class="img">
                     </div>
-                    <div class="card-footer" style="text-align: center;">Atualização: 2022/03/01 14:31 - <a href=”#” >Histórico</a></div>
+                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_temperatura?> - <a href=”#”>Histórico</a></div>
                 </div>
-           </div>
-           <div class="col-sm">
+            </div>
+            <div class="col-sm">
                 <div class="card">
                     <div class="card-header" style="text-align: center;"><b>Humidade: 85%</b></div>
-                    <div class="card-body" >
+                    <div class="card-body">
                         <img src="lab02_icons/door.png" alt="humidade" class="img">
                     </div>
-                    <div class="card-footer" style="text-align: center;">Atualização: 2022/03/01 14:31 - <a href=”#” >Histórico</a></div>
+                    <div class="card-footer" style="text-align: center;">Atualização: 2022/03/01 14:31 - <a href=”#”>Histórico</a></div>
                 </div>
-           </div>
-       </div>
+            </div>
+        </div>
     </div><br>
-   
-   <!--TABELA DE INFORMAÇÃO-->
-   <div class="container">
+
+    <!--TABELA DE INFORMAÇÃO-->
+    <div class="container">
         <table class="table">
             <thead>
                 <tr>
@@ -124,9 +135,9 @@ if(!isset($_SESSION['username'])){
                     <td><span class="badge rounded-pill bg-success">Ativo</span></td>
                 </tr>
                 <tr>
-                    <td>Temperatura</td>
-                    <td>22º</td>
-                    <td>2021/03/01 14:31</td>
+                    <td><?php echo $nome_temperatura?></td>
+                    <td><?php echo $valor_temperatura."º"?></td>
+                    <td><?php echo $hora_temperatura?></td>
                     <td><span class="badge rounded-pill bg-danger">Desativo</span></td>
                 </tr>
                 <tr>
@@ -143,7 +154,7 @@ if(!isset($_SESSION['username'])){
                 </tr>
             </tbody>
         </table>
-   </div>
+    </div>
 
 
 </body>
