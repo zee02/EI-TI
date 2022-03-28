@@ -1,42 +1,25 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    echo "recebido um post";
-}elseif($_SERVER['REQUEST_METHOD'] == "GET"){
-    echo "recebido um get";
-}else{
-    echo "metodo nao permitido";
-}
-
-print_r($_POST);
-
 $valor_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/valor.txt");
 $hora_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/hora.txt");
 $log_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/log.txt");
 $nome_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/nome.txt");
 
-if(isset($_POST['nome'])){
-   echo "Nome encontrado...";
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+print_r($_POST);
+
+if(isset($_POST["nome"]) && isset($_POST["hora"]) && isset($_POST["valor"])){
+    file_put_contents("/Applications/MAMP/htdocs/EI-TI/api/files/".$_POST['nome']."/hora.txt",$_POST["hora"]);
+    file_put_contents("/Applications/MAMP/htdocs/EI-TI/api/files/".$_POST['nome']."/valor.txt", $_POST["valor"]);
+    file_put_contents("/Applications/MAMP/htdocs/EI-TI/api/files/".$_POST['nome']. "/log.txt", $_POST["hora"].";".$_POST["valor"].PHP_EOL, FILE_APPEND);
 } else{
-    echo "Nome não encontrado...";
+    echo "Erro na API";
 }
-
-if(isset($_POST['hora'])){
-    echo "Hora definida... A executar";
-    file_put_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/".$_POST['nome'].".txt", $_POST['hora']);
-    exit();
+}elseif($_SERVER['REQUEST_METHOD'] == "GET"){
+    echo "metodo get";
 }else {
-    echo "Hora não encontrada...";
-}
-
-if(isset($_POST['valor'])){
-    echo "Valor definido... A executar...";
-    file_put_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/".$_POST['nome'].".txt", $_POST['valor']);
-    exit();
-}else {
-    echo "Valor não encontrado...";
+    echo "metodo errado";
 }
 
 ?>
-
