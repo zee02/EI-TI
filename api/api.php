@@ -18,7 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 } elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_GET["nome"])) {
-        echo file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/" . $_GET['nome'] . "/valor.txt");
+        if(is_dir("/Applications/MAMP/htdocs/EI-TI/api/files/". $_GET['nome'])){
+            echo file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/" . $_GET['nome'] . "/valor.txt");
+        }else {
+            echo "Não existe uma pasta com esse nome";
+        }
     } else {
         http_response_code(404);
     }
