@@ -18,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 } elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_GET["nome"])) {
-        if(is_dir("/Applications/MAMP/htdocs/EI-TI/api/files/". $_GET['nome'])){
+        if (is_dir("/Applications/MAMP/htdocs/EI-TI/api/files/" . $_GET['nome'])) {
             echo file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/" . $_GET['nome'] . "/valor.txt");
-        }else {
-            echo "Não existe uma pasta com esse nome";
+        } else {
+            echo "Erro " . http_response_code(404) . " sensor não existente...";
         }
     } else {
         http_response_code(404);
