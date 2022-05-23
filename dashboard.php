@@ -95,7 +95,7 @@ $nome_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/nom
     <!--3 PAINEIS DE CONTROLO-->
     <div class="container">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-sm-4">
                 <div class="card">
                     <div class="card-header" style="text-align: center;"><b>Luminosidade: 80%</b></div>
                     <div class="card-body">
@@ -104,7 +104,7 @@ $nome_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/nom
                     <div class="card-footer" style="text-align: center;">Atualização: 2022/03/01 14:31 - <a href=”#”>Histórico</a></div>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-sm-4">
                 <div class="card">
                     <div class="card-header" style="text-align: center;"><b> <?php echo $nome_temperatura . ": " . $valor_temperatura . "º" ?></b></div>
                     <div class="card-body">
@@ -113,7 +113,7 @@ $nome_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/nom
                     <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_temperatura ?> - <a href=”#”>Histórico</a></div>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-sm-4">
                 <div class="card">
                     <div class="card-header" style="text-align: center;"><b>Humidade: 85%</b></div>
                     <div class="card-body">
@@ -122,7 +122,7 @@ $nome_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/nom
                     <div class="card-footer" style="text-align: center;">Atualização: 2022/03/01 14:31 - <a href=”#”>Histórico</a></div>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-sm-4" style="padding-top:20px">
                 <div class="card">
                     <?php
                     if ($valor_movimento == 1) {
@@ -144,29 +144,31 @@ $nome_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/nom
                     <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_movimento ?> <a href=”#”>Histórico</a></div>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-sm-4" style="padding-top:20px">
                 <div class="card">
                     <?php
                     if ($valor_led == 1) {
                     ?>
                         <div class="card-header" style="text-align: center;"><b>Estado do LED: Ligado</b></div>
                         <div class="card-body">
-                            <img src="lab02_icons/led_on.png" alt="led" class="img"></div>
+                            <img src="lab02_icons/led_on.png" alt="led" class="img">
                         </div>
-                    <?php
-                    } else {
-                    ?>
-                        <div class="card-header" style="text-align: center;"><b>Estado do LED: Desligado</b></div>
-                        <div class="card-body">
-                            <img src="lab02_icons/led_off.png" alt="led" class="img"></div>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_movimento ?> <a href=”#”>Histórico</a></div>
                 </div>
+            <?php
+                    } else {
+            ?>
+                <div class="card-header" style="text-align: center;"><b>Estado do LED: Desligado</b></div>
+                <div class="card-body">
+                    <img src="lab02_icons/led_off.png" alt="led" class="img">
+                </div>
+            <?php
+                    }
+            ?>
+            <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_led ?> <a href=”#”>Histórico</a></div>
             </div>
-        </div><br>
+        </div>
+    </div>
+    <br>
 
     <!--TABELA DE INFORMAÇÃO-->
     <div class="container">
