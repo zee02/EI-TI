@@ -10,7 +10,16 @@ $hora_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files
 $log_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/log.txt");
 $nome_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/nome.txt");
 
-echo ($nome_temperatura . ": " . $valor_temperatura . "ºC em " . $hora_temperatura);
+$valor_movimento = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/movimento/valor.txt");
+$hora_movimento  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/movimento/hora.txt");
+$log_movimento  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/movimento/log.txt");
+$nome_movimento  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/movimento/nome.txt");
+
+$valor_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/valor.txt");
+$hora_led  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/hora.txt");
+$log_led  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/log.txt");
+$nome_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/nome.txt");
+
 ?>
 
 
@@ -97,11 +106,11 @@ echo ($nome_temperatura . ": " . $valor_temperatura . "ºC em " . $hora_temperat
             </div>
             <div class="col-sm">
                 <div class="card">
-                    <div class="card-header" style="text-align: center;"><b> <?php echo $nome_temperatura.": ". $valor_temperatura."º" ?></b></div>
+                    <div class="card-header" style="text-align: center;"><b> <?php echo $nome_temperatura . ": " . $valor_temperatura . "º" ?></b></div>
                     <div class="card-body">
                         <img src="lab02_icons/temperature.png" alt="humidade" class="img">
                     </div>
-                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_temperatura?> - <a href=”#”>Histórico</a></div>
+                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_temperatura ?> - <a href=”#”>Histórico</a></div>
                 </div>
             </div>
             <div class="col-sm">
@@ -113,8 +122,51 @@ echo ($nome_temperatura . ": " . $valor_temperatura . "ºC em " . $hora_temperat
                     <div class="card-footer" style="text-align: center;">Atualização: 2022/03/01 14:31 - <a href=”#”>Histórico</a></div>
                 </div>
             </div>
-        </div>
-    </div><br>
+            <div class="col-sm">
+                <div class="card">
+                    <?php
+                    if ($valor_movimento == 1) {
+                    ?>
+                        <div class="card-header" style="text-align: center;"><b>Movimento: Movimento </b></div>
+                        <div class="card-body">
+                            <img src="lab02_icons/movimento.png" alt="movimento" class="img">
+                        </div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="card-header" style="text-align: center;"><b>Movimento: Sem Movimento </b></div>
+                        <div class="card-body">
+                            <img src="lab02_icons/sem_movimento.png" alt="movimento" class="img">
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_movimento ?> <a href=”#”>Histórico</a></div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card">
+                    <?php
+                    if ($valor_led == 1) {
+                    ?>
+                        <div class="card-header" style="text-align: center;"><b>Estado do LED: Ligado</b></div>
+                        <div class="card-body">
+                            <img src="lab02_icons/led_on.png" alt="led" class="img"></div>
+                        </div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="card-header" style="text-align: center;"><b>Estado do LED: Desligado</b></div>
+                        <div class="card-body">
+                            <img src="lab02_icons/led_off.png" alt="led" class="img"></div>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_movimento ?> <a href=”#”>Histórico</a></div>
+                </div>
+            </div>
+        </div><br>
 
     <!--TABELA DE INFORMAÇÃO-->
     <div class="container">
@@ -135,9 +187,9 @@ echo ($nome_temperatura . ": " . $valor_temperatura . "ºC em " . $hora_temperat
                     <td><span class="badge rounded-pill bg-success">Ativo</span></td>
                 </tr>
                 <tr>
-                    <td><?php echo $nome_temperatura?></td>
-                    <td><?php echo $valor_temperatura."º"?></td>
-                    <td><?php echo $hora_temperatura?></td>
+                    <td><?php echo $nome_temperatura ?></td>
+                    <td><?php echo $valor_temperatura . "º" ?></td>
+                    <td><?php echo $hora_temperatura ?></td>
                     <td><span class="badge rounded-pill bg-danger">Desativo</span></td>
                 </tr>
                 <tr>

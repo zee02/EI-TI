@@ -1,11 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-$valor_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/valor.txt");
-$hora_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/hora.txt");
-$log_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/log.txt");
-$nome_temperatura = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/temperatura/nome.txt");
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     print_r($_POST);
 
