@@ -15,6 +15,11 @@ $hora_movimento  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/
 $log_movimento  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/movimento/log.txt");
 $nome_movimento  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/movimento/nome.txt");
 
+$valor_porta = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/porta/valor.txt");
+$hora_porta = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/porta/hora.txt");
+$log_porta = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/porta/log.txt");
+$nome_porta  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/porta/nome.txt");
+
 $valor_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/valor.txt");
 $hora_led  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/hora.txt");
 $log_led  = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/log.txt");
@@ -114,12 +119,25 @@ $nome_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/nom
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-header" style="text-align: center;"><b>Humidade: 85%</b></div>
-                    <div class="card-body">
-                        <img src="lab02_icons/door.png" alt="humidade" class="img">
-                    </div>
-                    <div class="card-footer" style="text-align: center;">Atualização: 2022/03/01 14:31 - <a href=”#”>Histórico</a></div>
+            <div class="card">
+                    <?php
+                    if ($valor_porta == 1) {
+                    ?>
+                        <div class="card-header" style="text-align: center;"><b>Porta: Aberta </b></div>
+                        <div class="card-body">
+                            <img src="lab02_icons/open_door.png" alt="movimento" class="img">
+                        </div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="card-header" style="text-align: center;"><b>Porta: Fechada </b></div>
+                        <div class="card-body">
+                            <img src="lab02_icons/closed_door.png" alt="movimento" class="img">
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_porta ?> <a href=”#”>Histórico</a></div>
                 </div>
             </div>
             <div class="col-sm-4" style="padding-top:20px">
