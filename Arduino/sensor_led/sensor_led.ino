@@ -25,18 +25,18 @@ void loop() {
   delay(500);
   float resultadoTemperatura = enviarGet(resourceGetTemperatura);
   Serial.println(resultadoTemperatura);
+  String dados;
 
   if(resultadoTemperatura > 20){
     Serial.println("Vou ligar o led...");
     digitalWrite(LED_BUILTIN, HIGH);
-    String dados = "valor=1&nome=led";
-    enviarPost(resourcePost, contentType, dados);
+    dados = "valor=1&nome=led&hora=2021/03/25 00:31";
   } else {
     Serial.println("Vou desligar o led...");
     digitalWrite(LED_BUILTIN, LOW);
-    String dados = "valor=0&nome=led";
-    enviarPost(resourcePost, contentType, dados);
+    dados = "valor=0&nome=led&hora=2021/03/25 00:31";
   }
+  enviarPost(resourcePost, contentType, dados);
 }
 
 
