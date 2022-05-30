@@ -1808,3 +1808,6 @@ hora;valor
 2021/04/30 23:59:59;1
 2021/04/30 23:59:59;0
 2021/04/30 23:59:59;1
+<function datahora at 0x7f8f28035f70>;1
+<function datahora at 0x7f8f28035f70>;1
+Mon, 30 May 2022 09:53:37;1
