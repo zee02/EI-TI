@@ -184,6 +184,16 @@ $nome_led = file_get_contents("/Applications/MAMP/htdocs/EI-TI/api/files/led/nom
             ?>
             <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_led ?> <a href=”#”>Histórico</a></div>
             </div>
+
+            <div class="col-sm-4" style="padding-top:20px">
+                <div class="card">
+                    <div class="card-header" style="text-align: center;"><b>WebCam</b></div>
+                    <div class="card-body">
+                        <img src='lab02_icons/webcam.jpg?id=".time()."' alt="webcam" id="webcam" style="width: 190px;"  class="img">
+                    </div>
+                    <div class="card-footer" style="text-align: center;">Atualização: <?php echo $hora_temperatura ?> - <a href=”#”>Histórico</a></div>
+                </div>
+            </div>
         </div>
     </div>
     <br>
